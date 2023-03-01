@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:hackfest_morning_box/src/auth_feature/screens/login_screen.dart';
-import 'package:hackfest_morning_box/src/auth_feature/screens/register_screen.dart';
-import 'package:hackfest_morning_box/src/onboarding_feature/screens/splash_screen.dart';
-import 'package:hackfest_morning_box/src/shared/router.dart';
-
+import 'package:morning_box/src/auth_feature/views/login_screen.dart';
+import 'package:morning_box/src/auth_feature/views/register_screen.dart';
+import 'package:morning_box/src/shared/router.dart';
+import 'package:morning_box/src/onboarding_feature/views/splash_screen.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case init:
-        final args = settings.arguments;
+        final args = settings.arguments; 
         return MaterialPageRoute(builder: (context) => SplashScreen());
       case login:
         final args = settings.arguments;

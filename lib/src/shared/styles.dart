@@ -21,56 +21,67 @@ TextStyle heading1Semi = GoogleFonts.roboto(
   fontSize: 48,
   fontWeight: FontWeight.w600,
 ));
+
 TextStyle heading2Semi = GoogleFonts.roboto(
     textStyle: TextStyle(
   fontSize: 34,
   fontWeight: FontWeight.w600,
-));
+));  
+
 TextStyle heading3Semi = GoogleFonts.roboto(
     textStyle: TextStyle(
   fontSize: 24,
   fontWeight: FontWeight.w600,
 ));
+
 TextStyle heading4Semi = GoogleFonts.roboto(
     textStyle: TextStyle(
   fontSize: 20,
   fontWeight: FontWeight.w600,
 ));
+
 TextStyle subtitle1Semi = GoogleFonts.roboto(
     textStyle: TextStyle(
   fontSize: 16,
   fontWeight: FontWeight.w600,
 ));
+
 TextStyle subtitle2Semi = GoogleFonts.roboto(
     textStyle: TextStyle(
   fontSize: 14,
   fontWeight: FontWeight.w600,
 ));
+
 TextStyle body1Semi = GoogleFonts.roboto(
     textStyle: TextStyle(
   fontSize: 16,
   fontWeight: FontWeight.w600,
 ));
+
 TextStyle body2Semi = GoogleFonts.roboto(
     textStyle: TextStyle(
   fontSize: 14,
   fontWeight: FontWeight.w600,
 ));
+
 TextStyle body3Semi = GoogleFonts.roboto(
     textStyle: TextStyle(
   fontSize: 10,
   fontWeight: FontWeight.w600,
 ));
+
 TextStyle captionSemi = GoogleFonts.roboto(
     textStyle: TextStyle(
   fontSize: 12,
   fontWeight: FontWeight.w600,
 ));
+
 TextStyle overlineSemi = GoogleFonts.roboto(
     textStyle: TextStyle(
   fontSize: 10,
   fontWeight: FontWeight.w600,
 ));
+
 TextStyle buttonSemi = GoogleFonts.roboto(
     textStyle: TextStyle(
   fontSize: 14,
@@ -83,21 +94,25 @@ TextStyle heading1Bold = GoogleFonts.roboto(
   fontSize: 48,
   fontWeight: FontWeight.w700,
 ));
+
 TextStyle heading2Bold = GoogleFonts.roboto(
     textStyle: TextStyle(
   fontSize: 34,
   fontWeight: FontWeight.w700,
 ));
+
 TextStyle heading3Bold = GoogleFonts.roboto(
     textStyle: TextStyle(
   fontSize: 24,
   fontWeight: FontWeight.w700,
 ));
+
 TextStyle heading4Bold = GoogleFonts.roboto(
     textStyle: TextStyle(
   fontSize: 20,
   fontWeight: FontWeight.w700,
 ));
+
 TextStyle subtitle1Bold = GoogleFonts.roboto(
     textStyle: TextStyle(
   fontSize: 16,
