@@ -3,6 +3,9 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:morning_box/src/shared/colors.dart';
 import 'package:morning_box/src/shared/styles.dart';
+import 'package:morning_box/src/subscription_feature/views/menu_option_screen.dart';
+import 'package:morning_box/src/subscription_feature/views/subscription_screen.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -21,13 +24,29 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: BottomNavigationBar(
         selectedLabelStyle: body2Regular,
         unselectedLabelStyle: body2Regular,
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                );
+              },
+              child: Icon(Icons.home),
+            ),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_bag_rounded),
+            icon: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SubscriptionScreen()),
+                );
+              },
+              child: Icon(Icons.shopping_bag_rounded),
+            ),
             label: 'Subscription',
           ),
           BottomNavigationBarItem(
@@ -98,15 +117,25 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                                 Align(
                                   alignment: Alignment.centerLeft,
-                                  child: Container(
-                                    padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(16.0),
-                                      border: Border.all(color: Colors.white),
-                                    ),
-                                    child: Text(
-                                      'Invite Friends to Use Morning Box >',
-                                      style: body3Regular.copyWith(color: AppColors.kcBaseWhite),
+                                  child: GestureDetector(
+                                    onTap: () async {
+                                      const url = 'https://www.example.com';
+                                      if (await canLaunch(url)) {
+                                        await launch(url);
+                                      } else {
+                                        throw 'Could not launch $url';
+                                      }
+                                    },
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(16.0),
+                                        border: Border.all(color: Colors.white),
+                                      ),
+                                      child: Text(
+                                        'Invite Friends to Use Morning Box >',
+                                        style: body3Regular.copyWith(color: AppColors.kcBaseWhite),
+                                      ),
                                     ),
                                   ),
                                 )
@@ -220,15 +249,23 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                                 Align(
                                   alignment: Alignment.centerRight,
-                                  child: Container(
-                                    padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(16.0),
-                                      border: Border.all(color: AppColors.kcSecondaryOrange),
-                                    ),
-                                    child: Text(
-                                      'Renew Subscription >',
-                                      style: body3Regular.copyWith(color: AppColors.kcSecondaryOrange),
+                                  child: GestureDetector(
+                                    onTap: () async {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => MenuOption()),
+                                      );
+                                    },
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(16.0),
+                                        border: Border.all(color: AppColors.kcSecondaryOrange),
+                                      ),
+                                      child: Text(
+                                        'Renew Subscription >',
+                                        style: body3Regular.copyWith(color: AppColors.kcSecondaryOrange),
+                                      ),
                                     ),
                                   ),
                                 )
@@ -269,9 +306,18 @@ class _HomeScreenState extends State<HomeScreen> {
                             SizedBox(
                               height: 16,
                             ),
-                            Image.asset(
-                              'assets/img/ic_packetList.png'
+                            GestureDetector(
+                              onTap: () async {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => SubscriptionScreen()),
+                                );
+                              },
+                              child: Image.asset(
+                                'assets/img/ic_packetList.png'
+                              ),
                             )
+                            
                           ],
                         ),
                       )

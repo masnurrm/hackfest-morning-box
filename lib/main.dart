@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:morning_box/src/home_feature/home_screen.dart';
+import 'package:morning_box/src/home_feature/views/home_screen.dart';
 import 'package:morning_box/src/onboarding_feature/views/splash_screen.dart';
 import 'package:morning_box/src/shared/colors.dart';
 import 'package:morning_box/src/shared/route_generator.dart';
 import 'package:morning_box/src/shared/styles.dart';
+import 'package:morning_box/src/subscription_feature/views/maps_screen.dart';
 import 'package:morning_box/src/subscription_feature/views/menu_option_screen.dart';
 import 'package:morning_box/src/subscription_feature/views/payment_option_screen.dart';
+import 'package:morning_box/src/subscription_feature/views/result_screen.dart';
 import 'package:morning_box/src/subscription_feature/views/subscription_screen.dart';
+import 'package:morning_box/src/subscription_feature/views/voucher_option_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,6 +22,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
         title: 'Morning',
         // initialRoute: init,
         onGenerateRoute: RouteGenerator.generateRoute,
@@ -32,7 +36,7 @@ class MyApp extends StatelessWidget {
           ),
           primarySwatch: Colors.blue,
         ),
-      home: PaymentMenu()
+      home: SplashScreen()
     );
     
   }

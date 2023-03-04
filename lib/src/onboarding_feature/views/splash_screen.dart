@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:morning_box/src/auth_feature/views/login_screen.dart';
-import 'package:morning_box/src/home_feature/home_screen.dart';
+import 'package:morning_box/src/home_feature/views/home_screen.dart';
 import 'package:morning_box/src/shared/local_storage.dart';
 import 'package:morning_box/src/shared/router.dart';
 

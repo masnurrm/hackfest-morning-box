@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:morning_box/src/home_feature/views/home_screen.dart';
 import 'package:morning_box/src/shared/colors.dart';
 import 'package:morning_box/src/shared/styles.dart';
+import 'package:morning_box/src/subscription_feature/views/menu_option_screen.dart';
 
 class SubscriptionScreen extends StatefulWidget {
   const SubscriptionScreen({super.key});
@@ -40,13 +42,29 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
       bottomNavigationBar: BottomNavigationBar(
         selectedLabelStyle: body2Regular,
         unselectedLabelStyle: body2Regular,
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                );
+              },
+              child: Icon(Icons.home),
+            ),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_bag_rounded),
+            icon: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SubscriptionScreen()),
+                );
+              },
+              child: Icon(Icons.shopping_bag_rounded),
+            ),
             label: 'Subscription',
           ),
           BottomNavigationBarItem(
@@ -81,17 +99,25 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                               style: heading5SemiBold
                             ),
                           ),
-                          Align(
-                            alignment: Alignment.centerRight,
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(16.0),
-                                border: Border.all(color: AppColors.kcSecondaryOrange),
-                              ),
-                              child: Text(
-                                'Renew Subscription >',
-                                style: body3Regular.copyWith(color: AppColors.kcSecondaryOrange),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => MenuOption()),
+                              );
+                            },
+                            child: Align(
+                              alignment: Alignment.centerRight,
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(16.0),
+                                  border: Border.all(color: AppColors.kcSecondaryOrange),
+                                ),
+                                child: Text(
+                                  'Renew Subscription >',
+                                  style: body3Regular.copyWith(color: AppColors.kcSecondaryOrange),
+                                ),
                               ),
                             ),
                           )
@@ -247,8 +273,16 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                     SizedBox(
                       height: 16,
                     ),
-                    Image.asset(
-                      'assets/img/ic_packetListWhite.png'
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => MenuOption()),
+                        );
+                      },
+                      child: Image.asset(
+                        'assets/img/ic_packetListWhite.png'
+                      ),
                     )
                   ],
                 ),

@@ -3,6 +3,10 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:morning_box/src/shared/colors.dart';
 import 'package:morning_box/src/shared/styles.dart';
+import 'package:morning_box/src/subscription_feature/views/maps_screen.dart';
+import 'package:morning_box/src/subscription_feature/views/menu_option_screen.dart';
+import 'package:morning_box/src/subscription_feature/views/result_screen.dart';
+import 'package:morning_box/src/subscription_feature/views/voucher_option_screen.dart';
 
 class PaymentMenu extends StatefulWidget {
   const PaymentMenu({super.key});
@@ -22,9 +26,17 @@ class _PaymentMenuState extends State<PaymentMenu> {
         elevation: 0,
         leading: Container(
           padding: const EdgeInsets.only(top: 32),
-          child: Icon(
-            Icons.arrow_back,
-            color: AppColors.kcBaseBlack
+          child: GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MenuOption()),
+              );
+            },
+            child: Icon(
+              Icons.arrow_back,
+              color: AppColors.kcBaseBlack
+            ),
           ),
         ),
         title: Container(
@@ -114,9 +126,17 @@ class _PaymentMenuState extends State<PaymentMenu> {
                             alignment: Alignment.centerRight,
                             child: Container(
                               padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-                              child: Text(
-                                'Renew Subscription >',
-                                style: body3Regular.copyWith(color: Colors.grey),
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => MapsOption()),
+                                  );
+                                },
+                                child: Text(
+                                  'Change Point >',
+                                  style: body3Regular.copyWith(color: Colors.grey),
+                                ),
                               ),
                             ),
                           ),
@@ -180,8 +200,99 @@ class _PaymentMenuState extends State<PaymentMenu> {
                           ),
                         ],
                       ),
-                      Expanded(
-                        child: SizedBox(),
+                      SizedBox(
+                        height: 24,
+                      ),
+                      Image.asset(
+                        'assets/img/ic_qrGopay.jpg'
+                      ),
+                      SizedBox(
+                        height: 40,
+                      ),
+                      Container(
+                        child: Column(
+                          children: [
+                            Container(
+                              padding: EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(16.0),
+                                border: Border.all(color: AppColors.kcDarkestWhite.withOpacity(0.5)),
+                              ),
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => VoucherOption()),
+                                  );
+                                },
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Image.asset(
+                                          'assets/img/ic_discount.png',
+                                          height: 32,
+                                        ),
+                                        SizedBox(
+                                          width: 8,
+                                        ),
+                                        Text(
+                                          'Choose Voucher',
+                                          style: body1SemiBold,
+                                        )
+                                      ],
+                                    ),
+                                    Icon(
+                                      Icons.arrow_forward_ios,
+                                      color: AppColors.kcBaseBlack
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Total',
+                                      style: body1Bold,
+                                    ),
+                                    Text(
+                                      'Rp140.000',
+                                      style:heading4Bold.copyWith(color: AppColors.kcSecondaryOrange),
+                                    ),
+                                  ],
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => ResultScreen()),
+                                    );
+                                  },
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(vertical: 16, horizontal: 40),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(16.0),
+                                      color: AppColors.kcSecondaryOrange,
+                                    ),
+                                    child: Text(
+                                      'Pay',
+                                      style: heading5SemiBold.copyWith(color: AppColors.kcBaseWhite),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            )
+                          ],
+                        ),
                       )
                     ],
                   )
