@@ -14,8 +14,17 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Center(
-        child: Text('Apa Bro?'),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal:20),
+          child: Column(
+            children: [
+              Text(
+                " ",
+                ),
+            ],
+          )
+        ),
       )
     );
   }
