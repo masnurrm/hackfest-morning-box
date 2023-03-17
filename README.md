@@ -1,4 +1,4 @@
-# hackfest_morning_box
+# morning_box_hackfest
 
 A new Flutter project.
 

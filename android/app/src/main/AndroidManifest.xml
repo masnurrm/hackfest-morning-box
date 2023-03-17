@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.hackfest_morning_box">
+    package="com.example.morning_box_hackfest">
    <application
-        android:label="hackfest_morning_box"
+        android:label="morning_box_hackfest"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

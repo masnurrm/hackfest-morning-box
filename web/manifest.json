@@ -1,6 +1,6 @@
 {
-    "name": "hackfest_morning_box",
-    "short_name": "hackfest_morning_box",
+    "name": "morning_box_hackfest",
+    "short_name": "morning_box_hackfest",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
