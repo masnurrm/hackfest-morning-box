@@ -5,4 +5,18 @@
          to allow setting breakpoints, to provide hot reload, etc.
     -->
     <uses-permission android:name="android.permission.INTERNET"/>
+    <activity
+        android:name=".MainActivity"
+        android:exported="true"
+        android:theme="@style/Theme.MyApplication.NoActionBar">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+
+    </activity>
+
+    <receiver
+        android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver"
+        android:exported="true"/>
 </manifest>
