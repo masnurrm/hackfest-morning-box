@@ -1,7 +1,17 @@
+import 'dart:convert';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:morning_box_hackfest/src/auth_feature/models/login.dart';
+import 'package:morning_box_hackfest/src/auth_feature/models/login_responses.dart';
+import 'package:morning_box_hackfest/src/auth_feature/services/login_service.dart';
+import 'package:morning_box_hackfest/src/provider/global.dart';
 import 'package:morning_box_hackfest/src/shared/colors.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
+import 'package:morning_box_hackfest/src/provider/global.dart';
+
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -11,6 +21,11 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  LoginApi _loginApi = LoginApi();
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -18,189 +33,129 @@ class _LoginScreenState extends State<LoginScreen> {
         Container(
           color: Colors.white,
         ),
-        // Image.asset(
-        //   'assets/background.png',
-        //   fit: BoxFit.fitWidth,
-        //   width: MediaQuery.of(context).size.width,
-        //   height: MediaQuery.of(context).size.height,
-        // ),
+        // ...
         Scaffold(
           backgroundColor: Colors.transparent,
           body: Center(
             child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  // SizedBox(height: 50,),
-                  Column(
-                    children: [
-                      Container(
-                        height: 10,
+              child: Padding(
+                padding: const EdgeInsets.all(40),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Center(
+                      child: Image.asset(
+                        'assets/img/ic_onboarding.png',
+                        width: MediaQuery.of(context).size.width / 1.3,
                       ),
-                      // Image.asset(
-                      //   'assets/logo-typeface.png', 
-                      //   width: MediaQuery.of(context).size.width / 1.5,
-                      // ),
-                      const SizedBox(height: 50),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      const Text(
-                        'Masuk',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(height: 20,),
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        margin: const EdgeInsets.symmetric(vertical: 8),
-                        child: TextFormField(
-                          validator: _validateName,
-                          style: const TextStyle(
-                            color: Colors.black,
-                          ),
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Email',
-                            fillColor: Color.fromARGB(46, 255, 255, 255),
-                            focusColor: Colors.white,
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xFF6E6E6E), width: 2.0),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xFF6E6E6E), width: 2.0),
-                            ),
-                            labelStyle: TextStyle(
-                              color: Color(0xFF6E6E6E),
-                              fontSize: 15,
-                              letterSpacing: 1.3,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        margin: const EdgeInsets.symmetric(vertical: 8),
-                        child: TextFormField(
-                          validator: _validateName,
-                          style: const TextStyle(
-                            color: Colors.black,
-                          ),
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Kata Sandi',
-                            fillColor: Color.fromARGB(46, 255, 255, 255),
-                            focusColor: Colors.white,
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xFF6E6E6E), width: 2.0),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xFF6E6E6E), width: 2.0),
-                            ),
-                            labelStyle: TextStyle(
-                              color: Color(0xFF6E6E6E),
-                              fontSize: 15,
-                              letterSpacing: 1.3,
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 20,),
-                      
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: AppColors.kcSecondaryOrange,
-                          padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-                          textStyle: const TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/');
-                        }, 
-                        child: const Text(
-                          'Masuk',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600
-                          ),
-                        )
-                      ),
-                      const SizedBox(height: 20,),
-
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            TextButton(
-                              onPressed: () {
-                                Navigator.pushNamed(context, '/register');
-                              },
-                              child: const Text(
-                                'Belum punya akun? Daftar',
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  color: Color(0xFF6E6E6E),
+                    ),
+                    // ...
+                    Column(
+                      children: [
+                        // ...
+                        Form(
+                          key: _formKey,
+                          child: Column(
+                            children: [
+                              // Email TextFormField
+                              TextFormField(
+                                controller: _emailController,
+                                keyboardType: TextInputType.emailAddress,
+                                decoration: InputDecoration(
+                                  labelText: 'Email',
+                                  // Add other decoration properties as needed
                                 ),
+                                validator: _validateEmail,
                               ),
-                            ),
-                          ],
+                              // Password TextFormField
+                              TextFormField(
+                                controller: _passwordController,
+                                keyboardType: TextInputType.visiblePassword,
+                                decoration: InputDecoration(
+                                  labelText: 'Password',
+                                  focusColor: AppColors.kcSecondaryOrange,
+                                  hoverColor: AppColors.kcSecondaryOrange,
+                                  fillColor: AppColors.kcSecondaryOrange
+                                  // Add other decoration properties as needed
+                                ),
+                                validator: _validatePassword,
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 60,),
-                    ],
-                  )
-                ],
+                        // ...
+                        SizedBox(
+                          height: 20,
+                        ),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            shadowColor: AppColors.kcSecondaryOrange,
+                            backgroundColor: AppColors.kcSecondaryOrange
+                          ),
+                          onPressed: () async {
+                            if (_formKey.currentState!.validate()) {
+                              await login();
+                            }
+                          }, child: Text(
+                            'Login'
+                          ),
+                          // ...
+                        ),
+                        // ...
+                      ],
+                    )
+                  ],
+                ),
               ),
-            )
-          )
+            ),
+          ),
         ),
       ],
     );
   }
-  String? _validateName(String? value) {
-    if(value!.isEmpty){
-      return '*Required Field';
-    } 
-    else if(value.length < 3){
-      return 'Name is too short';
-    } 
-    else {
-      return null;
+
+  Future<void> login() async {
+    final url = Uri.parse("http://34.124.165.248/signin");
+
+    try {
+      final response = await http.post(
+        url, 
+        body: json.encode({
+          "email": _emailController.text.trim(),
+          "password": _passwordController.text.trim()
+        })
+      );
+
+
+      var data = json.decode(response.body);
+      if(response.statusCode != 500) {
+        await Provider.of<Global>(context, listen: false).signin(data["data"]);
+        Navigator.pushNamed(context, '/home');
+
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(data["error"])),
+        );
+      }
+      // }
+    } catch(error) {
+      print(error);
     }
   }
 
-  String? _validatePhone(String? value) {
-    if(isMobileNumberValid(value!)){
+  String? _validateEmail(String? value) {
+    if (value == null || value.isEmpty) {
       return '*Required Field';
-    } 
-    else if(value.length < 11){
-      return 'Phone must be at least 11 digits';
-    } 
-    else if (value.length > 15) {
-      return 'Phone must not be greater than 15 digits';
     }
-    else {
-      return null;
-    }
+    // Add more email validation if needed
+    return null;
   }
 
-  bool isMobileNumberValid(String phoneNumber) {
-    String regexPattern = r'^(?:[1-9])?[0-9]{11,15}$';
-    var regExp = RegExp(regexPattern);
-
-    if (phoneNumber.isEmpty) {
-      return false;
-    } 
-    else if (regExp.hasMatch(phoneNumber)) {
-      return true;
+  String? _validatePassword(String? value) {
+    if (value == null || value.isEmpty) {
+      return '*Required Field';
     }
-    return false;
+    // Add more password validation if needed
+    return null;
   }
 }

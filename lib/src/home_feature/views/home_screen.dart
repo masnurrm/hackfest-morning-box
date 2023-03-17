@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:morning_box_hackfest/src/provider/global.dart';
 import 'package:morning_box_hackfest/src/shared/colors.dart';
 import 'package:morning_box_hackfest/src/shared/styles.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -11,9 +13,17 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
+  Map<String, dynamic> user = {};
 
   @override
   Widget build(BuildContext context) {
+  
+  void getUser() async {
+    user = await Provider.of<Global>(context, listen:true).getUser();
+  }
+  getUser();
+
+  print(user);
     return Scaffold(
       backgroundColor: AppColors.kcSecondaryOrange,
       bottomNavigationBar: BottomNavigationBar(
@@ -58,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: SingleChildScrollView(
               child: Column(
                 children: <Widget> [
-                  const Align(
+                 Align(
                     alignment: Alignment.centerLeft,
                     child: Text.rich(
                       TextSpan(
@@ -69,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         children: <InlineSpan>[
                           TextSpan(
-                            text: 'Nur Muhammad!',
+                            text: user["name"],
                             style: TextStyle(
                               fontSize: 20, 
                               fontWeight: FontWeight.bold,

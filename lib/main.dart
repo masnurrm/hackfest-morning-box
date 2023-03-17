@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:morning_box_hackfest/src/provider/global.dart';
+import 'package:provider/provider.dart';
 import 'package:morning_box_hackfest/src/onboarding_feature/views/splash_screen.dart';
 import 'package:morning_box_hackfest/src/shared/colors.dart';
 import 'package:morning_box_hackfest/src/shared/route_generator.dart';
@@ -14,7 +16,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+      return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => Global())
+      ],
+      child: Consumer<Global>(
+        builder: (context, value, _) => MaterialApp(
         title: 'Morning',
         // initialRoute: init,
         onGenerateRoute: RouteGenerator.generateRoute,
@@ -28,9 +35,10 @@ class MyApp extends StatelessWidget {
           ),
           primarySwatch: Colors.blue,
         ),
-      home: SplashScreen()
+        home: SplashScreen()
+      ),
+      )
     );
-    
   }
 }
 

@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'package:intl/intl.dart';
+
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:morning_box_hackfest/src/home_feature/views/home_screen.dart';
+import 'package:morning_box_hackfest/src/provider/global.dart';
 import 'package:morning_box_hackfest/src/shared/colors.dart';
 import 'package:morning_box_hackfest/src/shared/styles.dart';
 import 'package:morning_box_hackfest/src/subscription_feature/views/menu_option_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:http/http.dart' as http;
+
 
 class SubscriptionScreen extends StatefulWidget {
   const SubscriptionScreen({super.key});
@@ -15,9 +22,43 @@ class SubscriptionScreen extends StatefulWidget {
 
 class _SubscriptionScreenState extends State<SubscriptionScreen> {
   int _selectedIndex = 0;
+    Map<String, dynamic> activeFood = {};
+    String tomorrow = "";
 
  @override
   Widget build(BuildContext context) {
+
+    Future<void> getActiveOrder() async {
+    final url = Uri.parse("http://34.124.165.248/orders/active");
+
+    try {
+      final response = await http.get(
+        url, 
+        headers: {
+          "Authorization": "Bearer " + Provider.of<Global>(context, listen:false).getUser()["id"],
+        }
+      );
+
+      var data = await json.decode(response.body);
+      
+      tomorrow = DateFormat('EEEE').format(DateTime.now().add(const Duration(days: 1)));
+
+      if(response.statusCode != 500) {
+        setState(() {
+        activeFood = data["data"]["package"]["foods"][tomorrow.toLowerCase()];
+        });
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(data["error"])),
+        );
+      }
+    } catch(error) {
+      print(error);
+    }
+  }
+
+  getActiveOrder();
+
     return Scaffold(
       backgroundColor: AppColors.kcBaseWhite,
       appBar: AppBar(
@@ -25,8 +66,9 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
         foregroundColor: AppColors.kcBaseWhite,
         backgroundColor: AppColors.kcSecondaryOrange,
         elevation: 0,
+        leading: Container(),
         title: Container(
-          padding: EdgeInsets.only(top: 32, bottom: 16),
+          padding: EdgeInsets.only(top: 16, bottom: 16, right: 36),
           child: Align(
             alignment: Alignment.center,
             child: Text(
@@ -228,7 +270,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                           Align(
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              'Nasi Pecel Tahu Genjrot',
+                              activeFood["name"] ?? "",
                               style: heading5SemiBold.copyWith(color: AppColors.kcBaseBlack),
                             ),
                           ),
@@ -238,7 +280,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                           Align(
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              'Sabtu, 4 Maret 2023',
+                              tomorrow + ", " + DateFormat.yMd().format(DateTime.now().add(const Duration(days: 1))),
                               style: body2Regular.copyWith(color: AppColors.kcBaseBlack),
                             ),
                           ),
