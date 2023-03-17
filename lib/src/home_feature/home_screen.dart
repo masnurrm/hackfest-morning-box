@@ -19,22 +19,43 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: AppColors.kcSecondaryOrange,
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        selectedLabelStyle: body2Regular,
+        unselectedLabelStyle: body2Regular,
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/home');
+              },
+              child: Icon(Icons.home),
+            ),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Business',
+            icon: GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/subscription');
+              },
+              child: Icon(Icons.shopping_bag_rounded),
+            ),
+            label: 'Subscription',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'School',
+            icon: GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/reward');
+              },
+              child: Icon(Icons.confirmation_num_rounded)
+            ),
+            label: 'Poinku',
+          ),
+          
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
           ),
         ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
+        currentIndex: 1,
         // onTap: _onItemTapped,
       ),
       body: Column(

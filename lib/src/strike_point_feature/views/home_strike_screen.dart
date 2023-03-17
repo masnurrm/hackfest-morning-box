@@ -87,8 +87,13 @@ class _HomeStrikeScreenState extends State<HomeStrikeScreen> {
             ),
             label: 'Subscription',
           ),
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.confirmation_num_rounded),
+          BottomNavigationBarItem(
+            icon: GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/reward');
+              },
+              child: Icon(Icons.confirmation_num_rounded)
+            ),
             label: 'Poinku',
           ),
           

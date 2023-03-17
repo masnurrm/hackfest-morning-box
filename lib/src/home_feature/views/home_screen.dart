@@ -49,7 +49,12 @@ class _HomeScreenState extends State<HomeScreen> {
             label: 'Subscription',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.confirmation_num_rounded),
+            icon: GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/reward');
+              },
+              child: Icon(Icons.confirmation_num_rounded)
+            ),
             label: 'Poinku',
           ),
           
