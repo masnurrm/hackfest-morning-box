@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:morning_box/src/shared/colors.dart';
-import 'package:morning_box/src/shared/styles.dart';
-import 'package:morning_box/src/subscription_feature/views/menu_option_screen.dart';
-import 'package:morning_box/src/subscription_feature/views/subscription_screen.dart';
-// import 'package:url_launcher/url_launcher.dart';
+import 'package:morning_box_hackfest/src/shared/colors.dart';
+import 'package:morning_box_hackfest/src/shared/styles.dart';
+import 'package:morning_box_hackfest/src/subscription_feature/views/menu_option_screen.dart';
+import 'package:morning_box_hackfest/src/subscription_feature/views/subscription_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -28,10 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(
             icon: GestureDetector(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => HomeScreen()),
-                );
+                Navigator.pushNamed(context, '/home');
               },
               child: Icon(Icons.home),
             ),
@@ -40,10 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(
             icon: GestureDetector(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SubscriptionScreen()),
-                );
+                Navigator.pushNamed(context, '/subscription');
               },
               child: Icon(Icons.shopping_bag_rounded),
             ),
@@ -245,10 +238,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   alignment: Alignment.centerRight,
                                   child: GestureDetector(
                                     onTap: () async {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(builder: (context) => MenuOption()),
-                                      );
+                                      Navigator.pushNamed(context, '/renewSubscription');
                                     },
                                     child: Container(
                                       padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
@@ -302,10 +292,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             GestureDetector(
                               onTap: () async {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => SubscriptionScreen()),
-                                );
+                                Navigator.pushNamed(context, '/subscription');
                               },
                               child: Image.asset(
                                 'assets/img/ic_packetList.png'

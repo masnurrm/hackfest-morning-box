@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:morning_box/src/shared/colors.dart';
-import 'package:morning_box/src/shared/styles.dart';
-import 'package:morning_box/src/subscription_feature/views/maps_screen.dart';
-import 'package:morning_box/src/subscription_feature/views/menu_option_screen.dart';
-import 'package:morning_box/src/subscription_feature/views/result_screen.dart';
-import 'package:morning_box/src/subscription_feature/views/voucher_option_screen.dart';
+import 'package:morning_box_hackfest/src/shared/colors.dart';
+import 'package:morning_box_hackfest/src/shared/styles.dart';
+import 'package:morning_box_hackfest/src/subscription_feature/views/maps_screen.dart';
+import 'package:morning_box_hackfest/src/subscription_feature/views/menu_option_screen.dart';
+import 'package:morning_box_hackfest/src/subscription_feature/views/result_screen.dart';
+import 'package:morning_box_hackfest/src/subscription_feature/views/voucher_option_screen.dart';
 
-class PaymentMenu extends StatefulWidget {
-  const PaymentMenu({super.key});
+class PaymentMenuScreen extends StatefulWidget {
+  const PaymentMenuScreen({super.key});
 
   @override
-  State<PaymentMenu> createState() => _PaymentMenuState();
+  State<PaymentMenuScreen> createState() => _PaymentMenuState();
 }
 
-class _PaymentMenuState extends State<PaymentMenu> {
+class _PaymentMenuState extends State<PaymentMenuScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,10 +28,7 @@ class _PaymentMenuState extends State<PaymentMenu> {
           padding: const EdgeInsets.only(top: 32),
           child: GestureDetector(
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => MenuOption()),
-              );
+              Navigator.pushNamed(context, '/renewSubscription');
             },
             child: Icon(
               Icons.arrow_back,
@@ -128,10 +125,7 @@ class _PaymentMenuState extends State<PaymentMenu> {
                               padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
                               child: GestureDetector(
                                 onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(builder: (context) => MapsOption()),
-                                  );
+                                  Navigator.pushNamed(context, '/locationSubscription');
                                 },
                                 child: Text(
                                   'Change Point >',
@@ -220,10 +214,7 @@ class _PaymentMenuState extends State<PaymentMenu> {
                               ),
                               child: GestureDetector(
                                 onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(builder: (context) => VoucherOption()),
-                                  );
+                                  Navigator.pushNamed(context, '/voucherSubscription');
                                 },
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -272,10 +263,7 @@ class _PaymentMenuState extends State<PaymentMenu> {
                                 ),
                                 GestureDetector(
                                   onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(builder: (context) => ResultScreen()),
-                                    );
+                                    Navigator.pushNamed(context, '/successSubscription');
                                   },
                                   child: Container(
                                     padding: EdgeInsets.symmetric(vertical: 16, horizontal: 40),

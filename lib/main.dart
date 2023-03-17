@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:morning_box/src/home_feature/home_screen.dart';
-import 'package:morning_box/src/onboarding_feature/views/splash_screen.dart';
-import 'package:morning_box/src/shared/colors.dart';
-import 'package:morning_box/src/shared/route_generator.dart';
-import 'package:morning_box/src/shared/styles.dart';
-import 'package:morning_box/src/subscription_feature/views/subscription_screen.dart';
+import 'package:morning_box_hackfest/src/onboarding_feature/views/splash_screen.dart';
+import 'package:morning_box_hackfest/src/shared/colors.dart';
+import 'package:morning_box_hackfest/src/shared/route_generator.dart';
+import 'package:morning_box_hackfest/src/shared/styles.dart';
 
 void main() {
   runApp(const MyApp());

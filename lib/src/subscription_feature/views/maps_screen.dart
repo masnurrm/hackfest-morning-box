@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:morning_box/src/shared/colors.dart';
-import 'package:morning_box/src/shared/styles.dart';
-import 'package:morning_box/src/subscription_feature/views/payment_option_screen.dart';
+import 'package:morning_box_hackfest/src/shared/colors.dart';
+import 'package:morning_box_hackfest/src/shared/styles.dart';
+import 'package:morning_box_hackfest/src/subscription_feature/views/payment_option_screen.dart';
 
-class MapsOption extends StatefulWidget {
-  const MapsOption({super.key});
+class MapOptionScreen extends StatefulWidget {
+  const MapOptionScreen({super.key});
 
   @override
-  State<MapsOption> createState() => _MapsOptionState();
+  State<MapOptionScreen> createState() => _MapOptionScreenState();
 }
 
-class _MapsOptionState extends State<MapsOption> {
+class _MapOptionScreenState extends State<MapOptionScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,10 +25,7 @@ class _MapsOptionState extends State<MapsOption> {
           padding: const EdgeInsets.only(top: 32),
           child: GestureDetector(
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => PaymentMenu()),
-              );
+              Navigator.pushNamed(context, '/paymentSubscription');
             },
             child: Icon(
               Icons.arrow_back,

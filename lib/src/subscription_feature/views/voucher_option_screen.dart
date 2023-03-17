@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:morning_box/src/shared/colors.dart';
-import 'package:morning_box/src/shared/styles.dart';
-import 'package:morning_box/src/subscription_feature/views/payment_option_screen.dart';
+import 'package:morning_box_hackfest/src/shared/colors.dart';
+import 'package:morning_box_hackfest/src/shared/styles.dart';
+import 'package:morning_box_hackfest/src/subscription_feature/views/payment_option_screen.dart';
 
-class VoucherOption extends StatefulWidget {
-  const VoucherOption({super.key});
+class VoucherOptionScreen extends StatefulWidget {
+  const VoucherOptionScreen({super.key});
 
   @override
-  State<VoucherOption> createState() => _VoucherOptionState();
+  State<VoucherOptionScreen> createState() => _VoucherOptionScreenState();
 }
 
-class _VoucherOptionState extends State<VoucherOption> {
+class _VoucherOptionScreenState extends State<VoucherOptionScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,10 +25,7 @@ class _VoucherOptionState extends State<VoucherOption> {
           padding: const EdgeInsets.only(top: 32),
           child: GestureDetector(
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => PaymentMenu()),
-              );
+              Navigator.pushNamed(context, '/paymentSubscription');
             },
             child: Icon(
               Icons.arrow_back,

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:morning_box/src/home_feature/views/home_screen.dart';
-import 'package:morning_box/src/shared/colors.dart';
-import 'package:morning_box/src/shared/styles.dart';
+import 'package:morning_box_hackfest/src/home_feature/views/home_screen.dart';
+import 'package:morning_box_hackfest/src/shared/colors.dart';
+import 'package:morning_box_hackfest/src/shared/styles.dart';
 
 class ResultScreen extends StatefulWidget {
   const ResultScreen({super.key});
@@ -25,10 +25,7 @@ class _ResultScreenState extends State<ResultScreen> {
           padding: const EdgeInsets.only(top: 32),
           child: GestureDetector(
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => HomeScreen()),
-              );
+              Navigator.pushNamed(context, '/home');
             },
             child: Icon(
               Icons.arrow_back,

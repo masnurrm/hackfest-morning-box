@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:morning_box/src/shared/colors.dart';
-import 'package:morning_box/src/shared/styles.dart';
-import 'package:morning_box/src/subscription_feature/views/payment_option_screen.dart';
-import 'package:morning_box/src/subscription_feature/views/subscription_screen.dart';
+import 'package:morning_box_hackfest/src/shared/colors.dart';
+import 'package:morning_box_hackfest/src/shared/styles.dart';
+import 'package:morning_box_hackfest/src/subscription_feature/views/payment_option_screen.dart';
+import 'package:morning_box_hackfest/src/subscription_feature/views/subscription_screen.dart';
 
-class MenuOption extends StatefulWidget {
-  const MenuOption({super.key});
+class MenuOptionScreen extends StatefulWidget {
+  const MenuOptionScreen({super.key});
 
   @override
-  State<MenuOption> createState() => _MenuOptionState();
+  State<MenuOptionScreen> createState() => _MenuOptionScreenState();
 }
 
-class _MenuOptionState extends State<MenuOption> {
+class _MenuOptionScreenState extends State<MenuOptionScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,10 +26,7 @@ class _MenuOptionState extends State<MenuOption> {
           padding: const EdgeInsets.only(top: 32),
           child: GestureDetector(
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => SubscriptionScreen()),
-              );
+              Navigator.pushNamed(context, '/subscription');
             },
             child: Icon(
               Icons.arrow_back,
@@ -247,10 +244,7 @@ class _MenuOptionState extends State<MenuOption> {
                         alignment: Alignment.centerRight,
                         child: GestureDetector(
                           onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => PaymentMenu()),
-                            );
+                            Navigator.pushNamed(context, '/paymentSubscription');
                           },
                           child: Container(
                             padding: EdgeInsets.symmetric(vertical: 16, horizontal: 32),

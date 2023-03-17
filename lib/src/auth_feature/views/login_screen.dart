@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:morning_box_hackfest/src/shared/colors.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -111,7 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: const Color(0xFF163760),
+                          primary: AppColors.kcSecondaryOrange,
                           padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                           textStyle: const TextStyle(
                             fontSize: 15,
@@ -139,7 +140,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           children: [
                             TextButton(
                               onPressed: () {
-                                Navigator.pushNamed(context, '/sign_up_user');
+                                Navigator.pushNamed(context, '/register');
                               },
                               child: const Text(
                                 'Belum punya akun? Daftar',
