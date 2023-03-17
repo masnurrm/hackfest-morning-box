@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:morning_box_hackfest/src/shared/colors.dart';
 import 'package:morning_box_hackfest/src/shared/styles.dart';
-import 'package:morning_box_hackfest/src/subscription_feature/views/menu_option_screen.dart';
-import 'package:morning_box_hackfest/src/subscription_feature/views/subscription_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

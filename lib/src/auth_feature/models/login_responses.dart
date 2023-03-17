@@ -3,12 +3,12 @@ import 'package:json_annotation/json_annotation.dart';
 part 'login_responses.g.dart';
 
 @JsonSerializable()
-class login {
+class LoginResponse {
   Data? data;
 
-  login({this.data});
+  LoginResponse({this.data});
 
-  login.fromJson(Map<String, dynamic> json) {
+  LoginResponse.fromJson(Map<String, dynamic> json) {
     data = json['data'] != null ? new Data.fromJson(json['data']) : null;
   }
 
